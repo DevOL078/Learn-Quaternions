@@ -4,7 +4,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import model.Shape;
-import util.SceneManager;
 
 public class ShapeBox extends HBox {
 

@@ -64,7 +64,7 @@
                      <children>
                         <Button fx:id="plusAnimationButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onPlusAnimationButtonClick" styleClass="plusButton" stylesheets="@../style/buttonsStyle.css" />
                         <Button fx:id="minusAnimationButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onMinusAnimationButtonClick" styleClass="cancelButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="1" />
-                        <Button fx:id="optionsAnimationButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="settingsButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="2" onMouseClicked="#onOptionsAnimationButtonClick"/>
+                        <Button fx:id="optionsAnimationButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onOptionsAnimationButtonClick" styleClass="settingsButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </children>
@@ -91,13 +91,15 @@
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Button fx:id="plusShapeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onPlusShapeButtonClick" styleClass="plusButton" stylesheets="@../style/buttonsStyle.css" />
-                        <Button fx:id="minusShapeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="cancelButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="1" />
+                        <Button fx:id="minusShapeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onMinusShapeButtonClick" styleClass="cancelButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="1" />
+                        <Button fx:id="switchAxesButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onSwitchAxesButtonClick" styleClass="switchAxesButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                   <ListView fx:id="shapeList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">

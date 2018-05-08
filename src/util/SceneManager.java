@@ -93,24 +93,12 @@ public class SceneManager {
         transitionNumber++;
     }
 
-    public void deleteTransition(){
-        transitionNumber--;
-    }
-
     public void addRotation(){
         rotationNumber++;
     }
 
-    public void deleteRotation(){
-        rotationNumber--;
-    }
-
     public void addFullRotation(){
         fullRotationNumber++;
-    }
-
-    public void deleteFullRotation(){
-        fullRotationNumber--;
     }
 
     public void addShape(Shape shape){
@@ -119,13 +107,12 @@ public class SceneManager {
         mainScene.getChildren().add(shape.getTranslationGroup());
     }
 
-    public void deleteShape(String shapeName){
+    public void deleteShape(Shape shape){
         shapeNumber--;
-        Shape shape = shapes.get(shapeName);
         if(shape != null){
             mainScene.getChildren().remove(shape.getTranslationGroup());
+            scenario.deleteShape(shape);
         }
-
     }
 
     public int getAnimationsNumber(){

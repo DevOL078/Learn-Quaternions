@@ -53,3 +53,11 @@
     -fx-background-insets: 0, 1;
     -fx-background-repeat: no-repeat;
 }
+
+.switchAxesButton{
+    -fx-background-image: url("../../img/axes.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}

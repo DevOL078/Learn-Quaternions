@@ -150,4 +150,26 @@ public class Scenario {
         }
     }
 
+    public void deleteShape(Shape shape){
+        if(memberTransforms.get(shape) != null){
+            memberTransforms.remove(shape);
+        }
+        Vector<Action> toDelete = new Vector<>();
+        for(Action act: queueActions){
+            if(act.getShape().equals(shape)){
+                toDelete.add(act);
+            }
+        }
+        queueActions.removeAll(toDelete);
+        toDelete.clear();
+        for(Action act: copyActions){
+            if(act.getShape().equals(act)){
+
+                toDelete.add(act);
+            }
+        }
+        copyActions.removeAll(toDelete);
+        toDelete.clear();
+    }
+
 }

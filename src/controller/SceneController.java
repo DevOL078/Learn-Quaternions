@@ -29,6 +29,7 @@ import main.Test;
 import model.Point;
 import model.Quaternion;
 import model.Shape;
+import sun.security.provider.SHA;
 import util.Parser;
 import util.SceneManager;
 
@@ -36,6 +37,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Vector;
 
 public class SceneController {
 
@@ -85,6 +87,9 @@ public class SceneController {
     private Button minusShapeButton;
 
     @FXML
+    private Button switchAxesButton;
+
+    @FXML
     private Button playButton;
 
     @FXML
@@ -106,18 +111,21 @@ public class SceneController {
         minusShapeButton.setDisable(true);
         zoomPlusButton.setDisable(true);
         zoomMinusButton.setDisable(true);
-        playButton.setDisable(false);
+        playButton.setDisable(true);
         stopButton.setDisable(true);
+        plusAnimationButton.setDisable(true);
+        switchAxesButton.setDisable(true);
 
         shapeList.setOnMousePressed(e->{
             ShapeBox selected = shapeList.getSelectionModel().getSelectedItem();
-            if(selected.getClicked()){
-                selected.setClicked(false);
-                selected.switchDrawMode();
-            }
-            else{
-                selected.setClicked(true);
-                selected.switchDrawMode();
+            if(selected != null) {
+                if (selected.getClicked()) {
+                    selected.setClicked(false);
+                    selected.switchDrawMode();
+                } else {
+                    selected.setClicked(true);
+                    selected.switchDrawMode();
+                }
             }
         });
 
@@ -310,10 +318,10 @@ public class SceneController {
                         shapeList.getItems().add(new ShapeBox(shape));
                         stage.close();
                         minusShapeButton.setDisable(false);
-                        if (SceneManager.getInstance().getShapeNumber() > 0) {
-                            zoomPlusButton.setDisable(false);
-                            zoomMinusButton.setDisable(false);
-                        }
+                        switchAxesButton.setDisable(false);
+                        zoomPlusButton.setDisable(false);
+                        zoomMinusButton.setDisable(false);
+                        plusAnimationButton.setDisable(false);
 
                     } catch (IOException e1) {
                         System.out.println("Parsing failing");
@@ -332,6 +340,48 @@ public class SceneController {
             stage.setScene(scene);
             stage.show();
 
+        }
+    }
+
+    public void onMinusShapeButtonClick(){
+        ShapeBox box = shapeList.getSelectionModel().getSelectedItem();
+        if(box != null){
+            Shape shape = box.shape();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete shape");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete the shape " + box.shape().getName());
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK) {
+                SceneManager.getInstance().deleteShape(shape);
+                shapeList.getItems().remove(box);
+                Vector<AnimationBox> toDelete = new Vector<>();
+                for (AnimationBox b: animationList.getItems()) {
+                    if(b.getAction().getShape().equals(shape)){
+                        toDelete.add(b);
+                    }
+                }
+                animationList.getItems().removeAll(toDelete);
+                if(animationList.getItems().size() == 0){
+                    minusAnimationButton.setDisable(true);
+                    optionsAnimationButton.setDisable(true);
+                }
+                if (SceneManager.getInstance().getShapeNumber() == 0) {
+                    minusShapeButton.setDisable(true);
+                    switchAxesButton.setDisable(true);
+                    plusAnimationButton.setDisable(true);
+                    playButton.setDisable(true);
+                }
+
+            }
+        }
+    }
+
+    public void onSwitchAxesButtonClick(){
+        ShapeBox box = shapeList.getSelectionModel().getSelectedItem();
+        if(box != null){
+            box.shape().switchAxes();
         }
     }
 

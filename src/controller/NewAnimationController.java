@@ -168,16 +168,19 @@ public class NewAnimationController {
                 double z = Double.valueOf(vectorZVAText.getText());
                 double angle = Double.valueOf(angleVAText.getText());
                 QRotate rotation;
+                AnimationBox animationBox;
                 if(fullVABox.getSelectionModel().getSelectedItem().equals("Yes")){
                     rotation = new QRotate(priority, shape, new Point(x,y,z),angle,true);
+                    SceneManager.getInstance().addFullRotation();
+                    animationBox = new AnimationBox(rotation, "FullRotation" + SceneManager.getInstance().getFullRotationNumber());
                 }
                 else{
                     rotation = new QRotate(priority, shape, new Point(x,y,z),angle,false);
+                    SceneManager.getInstance().addRotation();
+                    animationBox = new AnimationBox(rotation, "Rotation" + SceneManager.getInstance().getRotationNumber());
                 }
                 SceneManager.getInstance().getScenario().addAction(rotation);
-                SceneManager.getInstance().addRotation();
 
-                AnimationBox animationBox = new AnimationBox(rotation, "Rotation" + SceneManager.getInstance().getRotationNumber());
                 SceneController.getInstance().addAnimationBox(animationBox);
                 stage.close();
             }
@@ -198,16 +201,19 @@ public class NewAnimationController {
                 double y = Double.valueOf(quatYText.getText());
                 double z = Double.valueOf(quatZText.getText());
                 QRotate rotation;
+                AnimationBox animationBox;
                 if(fullQBox.getSelectionModel().getSelectedItem().equals("Yes")){
                     rotation = new QRotate(priority, shape, new Quaternion(s,x,y,z), true);
+                    SceneManager.getInstance().addFullRotation();
+                    animationBox = new AnimationBox(rotation, "FullRotation" + SceneManager.getInstance().getFullRotationNumber());
                 }
                 else{
                     rotation = new QRotate(priority, shape, new Quaternion(s,x,y,z), false);
+                    SceneManager.getInstance().addRotation();
+                    animationBox = new AnimationBox(rotation, "FullRotation" + SceneManager.getInstance().getRotationNumber());
                 }
                 SceneManager.getInstance().getScenario().addAction(rotation);
-                SceneManager.getInstance().addRotation();
 
-                AnimationBox animationBox = new AnimationBox(rotation, "Rotation" + SceneManager.getInstance().getRotationNumber());
                 SceneController.getInstance().addAnimationBox(animationBox);
                 stage.close();
             }
