@@ -3,6 +3,7 @@ package animation;
 import controller.SceneController;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
@@ -26,7 +27,6 @@ public class Scenario {
     };
     private Vector<Action> actionsNow;
     private AnimationTimer timer;
-    private static Scenario instance;
     private HashMap<Shape, ObservableList<Transform>> memberTransforms;
 
     public Scenario() {
@@ -34,7 +34,6 @@ public class Scenario {
         queueActions = new PriorityQueue<>(comparator);
         copyActions = new PriorityQueue<>(comparator);
         memberTransforms = new HashMap<>();
-        instance = this;
     }
 
     public void addAction(Action action){
@@ -42,8 +41,26 @@ public class Scenario {
         copyActions.add(action);
         ObservableList<Transform> vec = memberTransforms.get(action.getShape());
         if(vec == null){
-            memberTransforms.put(action.getShape(), action.getShape().getTranslationGroup().getTransforms());
+            memberTransforms.put(action.getShape(), copyTransforms(action.getShape().getTranslationGroup().getTransforms()));
         }
+    }
+
+    private ObservableList<Transform> copyTransforms(ObservableList<Transform> list){
+        ObservableList<Transform> copyList = FXCollections.observableArrayList();
+        Transform copy = null;
+        for (Transform transform: list) {
+            if(transform instanceof Translate){
+                Translate translate = (Translate)transform;
+                copy = new Translate(translate.getX(), translate.getY(), translate.getZ());
+            }else if(transform instanceof Rotate){
+                Rotate rotate = (Rotate)transform;
+                copy = rotate.clone();
+            }
+            if(copy != null) {
+                copyList.add(copy);
+            }
+        }
+        return copyList;
     }
 
     public void addAll(Action ... actions){
@@ -75,8 +92,10 @@ public class Scenario {
         timer.start();
     }
 
-    private void stopTimer(){
+    public void stopTimer(){
         timer.stop();
+        actionsNow.clear();
+        queueActions.clear();
         queueActions.addAll(copyActions);
         for (Action act:queueActions) {
             act.setTicks(0);
@@ -84,6 +103,7 @@ public class Scenario {
         for (Shape shape: memberTransforms.keySet()) {
             shape.getTranslationGroup().getTransforms().clear();
             shape.getTranslationGroup().getTransforms().addAll(memberTransforms.get(shape));
+            shape.getRotationGroup().getTransforms().clear();
         }
         SceneController.getInstance().onStopScenario();
     }
@@ -104,9 +124,25 @@ public class Scenario {
         }
     }
 
-    public static Scenario getInstance(){
-        return instance;
+    public void addMemberTransform(Shape shape, Transform transform){
+        Transform copy = null;
+        if(transform instanceof Translate){
+            Translate translate = (Translate)transform;
+            copy = new Translate(translate.getX(), translate.getY(), translate.getZ());
+        }else if(transform instanceof Rotate){
+            Rotate rotate = (Rotate)transform;
+            copy = rotate.clone();
+        }
+        if(copy != null) {
+            ObservableList<Transform> list = memberTransforms.get(shape);
+            if (list != null) {
+                list.add(copy);
+            } else {
+                list = FXCollections.observableArrayList();
+                list.add(transform);
+                memberTransforms.put(shape, list);
+            }
+        }
     }
-
 
 }

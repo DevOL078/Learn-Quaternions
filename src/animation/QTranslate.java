@@ -57,9 +57,14 @@ public class QTranslate implements Action {
         shape.getTranslationGroup().getTransforms().add(translate);
     }
 
-    public static void translateGroup(Group group, Point vector){
+    public static void translateShape(Shape shape, Point vector){
         Translate translate = new Translate(vector.X(), vector.Y(), vector.Z());
-        group.getTransforms().add(translate);
+        shape.getTranslationGroup().getTransforms().add(translate);
+        SceneManager.getInstance().getScenario().addMemberTransform(shape, translate);
+    }
+
+    public static void translateGroup(Group group, Point vector){
+
     }
 
 }

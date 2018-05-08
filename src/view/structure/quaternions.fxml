@@ -130,7 +130,7 @@
                     </rowConstraints>
                      <children>
                         <Button fx:id="playButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="playButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="1" onMouseClicked="#onPlayButtonClick"/>
-                        <Button fx:id="stopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="stopButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="2" />
+                        <Button fx:id="stopButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="stopButton" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="2" onMouseClicked="#onStopButtonClick"/>
                         <Button fx:id="zoomPlusButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onZoomPlusButtonClick" styleClass="zoomPlus" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="3" />
                         <Button fx:id="zoomMinusButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onZoomMinusButtonClick" styleClass="zoomMinus" stylesheets="@../style/buttonsStyle.css" GridPane.columnIndex="4" />
                      </children>

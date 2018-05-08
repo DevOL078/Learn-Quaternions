@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.Point;
 import model.Quaternion;
 import model.Shape;
@@ -96,8 +97,12 @@ public class NewAnimationController {
     @FXML
     private ChoiceBox<String> fullQBox;
 
+    private static NewAnimationController instance;
+    private Stage stage;
+
     @FXML
     public void initialize(){
+        instance = this;
         ObservableList<String> animationsTypes = FXCollections.observableArrayList();
         animationsTypes.addAll("Transition", "Rotation");
         animationChoiceBox.getItems().addAll(animationsTypes);
@@ -143,6 +148,7 @@ public class NewAnimationController {
 
                 AnimationBox animationBox = new AnimationBox(translate, "Transition" + SceneManager.getInstance().getTransitionNumber());
                 SceneController.getInstance().addAnimationBox(animationBox);
+                stage.close();
             }
         }
     }
@@ -173,6 +179,7 @@ public class NewAnimationController {
 
                 AnimationBox animationBox = new AnimationBox(rotation, "Rotation" + SceneManager.getInstance().getRotationNumber());
                 SceneController.getInstance().addAnimationBox(animationBox);
+                stage.close();
             }
         }
     }
@@ -202,8 +209,17 @@ public class NewAnimationController {
 
                 AnimationBox animationBox = new AnimationBox(rotation, "Rotation" + SceneManager.getInstance().getRotationNumber());
                 SceneController.getInstance().addAnimationBox(animationBox);
+                stage.close();
             }
         }
+    }
+
+    public static NewAnimationController getInstance(){
+        return instance;
+    }
+
+    public void setStage(Stage stage){
+        this.stage = stage;
     }
 
 }

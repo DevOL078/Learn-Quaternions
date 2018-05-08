@@ -7,7 +7,6 @@ import gui.ShapeBox;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point3D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -16,11 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -216,6 +213,7 @@ public class SceneController {
                     settingsAnimationButton.setDisable(false);
                 }
             });
+            NewAnimationController.getInstance().setStage(stage);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -228,6 +226,11 @@ public class SceneController {
             playButton.setDisable(true);
             stopButton.setDisable(false);
         }
+    }
+
+    public void onStopButtonClick(){
+        SceneManager.getInstance().getScenario().stopTimer();
+        onStopScenario();
     }
 
     public void onStopScenario(){
@@ -301,52 +304,52 @@ public class SceneController {
                 Shape shape = box.shape();
                 switch (e.getCode()) {
                     case W: {
-                        QTranslate.translateGroup(shape.getTranslationGroup(), new Point(0,0,-3));
+                        QTranslate.translateShape(shape, new Point(0,0,-3));
                         break;
                     }
                     case S: {
-                        QTranslate.translateGroup(shape.getTranslationGroup(), new Point(0,0,3));
+                        QTranslate.translateShape(shape, new Point(0,0,3));
                         break;
                     }
                     case A: {
-                        QTranslate.translateGroup(shape.getTranslationGroup(), new Point(3,0,0));
+                        QTranslate.translateShape(shape, new Point(3,0,0));
                         break;
                     }
                     case D: {
-                        QTranslate.translateGroup(shape.getTranslationGroup(), new Point(-3,0,0));
+                        QTranslate.translateShape(shape, new Point(-3,0,0));
                         break;
                     }
                     case E: {
-                        QTranslate.translateGroup(shape.getTranslationGroup(), new Point(0,-3,0));
+                        QTranslate.translateShape(shape, new Point(0,-3,0));
                         break;
                     }
 
                     case Q: {
-                        QTranslate.translateGroup(shape.getTranslationGroup(), new Point(0,3,0));
+                        QTranslate.translateShape(shape, new Point(0,3,0));
                         break;
                     }
                     case I: {
-                        QRotate.rotateGroup(shape.getTranslationGroup(), new Quaternion(new Point(1, 0, 0), 2));
+                        QRotate.rotateShape(shape, new Quaternion(new Point(1, 0, 0), 2));
                         break;
                     }
                     case K: {
-                        QRotate.rotateGroup(shape.getTranslationGroup(), new Quaternion(new Point(1, 0, 0), -2));
+                        QRotate.rotateShape(shape, new Quaternion(new Point(1, 0, 0), -2));
                         break;
                     }
                     case J: {
-                        QRotate.rotateGroup(shape.getTranslationGroup(), new Quaternion(new Point(0, 1, 0), -2));
+                        QRotate.rotateShape(shape, new Quaternion(new Point(0, 1, 0), -2));
                         break;
                     }
                     case L: {
-                        QRotate.rotateGroup(shape.getTranslationGroup(), new Quaternion(new Point(0, 1, 0), 2));
+                        QRotate.rotateShape(shape, new Quaternion(new Point(0, 1, 0), 2));
                         break;
                     }
                     case U: {
-                        QRotate.rotateGroup(shape.getTranslationGroup(), new Quaternion(new Point(0, 0, 1), 2));
+                        QRotate.rotateShape(shape, new Quaternion(new Point(0, 0, 1), 2));
                         break;
                     }
                     case O: {
-                        QRotate.rotateGroup(shape.getTranslationGroup(), new Quaternion(new Point(0, 0, 1), -2));
+                        QRotate.rotateShape(shape, new Quaternion(new Point(0, 0, 1), -2));
                         break;
                     }
                 }
