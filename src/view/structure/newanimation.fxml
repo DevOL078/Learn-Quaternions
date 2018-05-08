@@ -100,12 +100,12 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="addTransitionButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add" GridPane.columnSpan="2" GridPane.rowIndex="2" onMouseClicked="#onAddTransitionButtonClick">
+                  <Button fx:id="addTransitionButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onAddTransitionButtonClick" text="Add" GridPane.columnSpan="2" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="cancelTransitionButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                  <Button fx:id="cancelTransitionButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" onMouseClicked="#onCancelButtonClick">
                      <GridPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </GridPane.margin>
@@ -167,7 +167,7 @@
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="cancelVAButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                    <Button fx:id="cancelVAButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" onMouseClicked="#onCancelButtonClick">
                                        <GridPane.margin>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </GridPane.margin>
@@ -253,7 +253,7 @@
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="cancelQButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                    <Button fx:id="cancelQButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" onMouseClicked="#onCancelButtonClick">
                                        <GridPane.margin>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </GridPane.margin>

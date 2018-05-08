@@ -45,6 +45,10 @@ public class QTranslate implements Action {
         return shape;
     }
 
+    public Point getVector(){
+        return vector;
+    }
+
     @Override
     public void playTick(double tick) {
         Point interpolateV = vector.interpolatePoint(tick);

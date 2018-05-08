@@ -7,7 +7,7 @@
 }
 
 .cancelButton{
-    -fx-background-image: url("../../img/cancel.png");
+    -fx-background-image: url("../../img/minus.png");
     -fx-background-position: center center;
     -fx-background-size: contain;
     -fx-background-insets: 0, 1;

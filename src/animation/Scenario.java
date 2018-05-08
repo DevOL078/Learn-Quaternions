@@ -45,6 +45,11 @@ public class Scenario {
         }
     }
 
+    public void deleteAction(Action action){
+        queueActions.remove(action);
+        copyActions.remove(action);
+    }
+
     private ObservableList<Transform> copyTransforms(ObservableList<Transform> list){
         ObservableList<Transform> copyList = FXCollections.observableArrayList();
         Transform copy = null;

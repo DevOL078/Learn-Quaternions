@@ -214,6 +214,10 @@ public class NewAnimationController {
         }
     }
 
+    public void onCancelButtonClick(){
+        stage.close();
+    }
+
     public static NewAnimationController getInstance(){
         return instance;
     }

@@ -1,5 +1,6 @@
 package controller;
 
+import animation.Action;
 import animation.QRotate;
 import animation.QTranslate;
 import gui.AnimationBox;
@@ -11,10 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
 import javafx.scene.SubScene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -37,6 +35,7 @@ import util.SceneManager;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class SceneController {
 
@@ -56,10 +55,10 @@ public class SceneController {
     private Button plusAnimationButton;
 
     @FXML
-    private Button cancelAnimationButton;
+    private Button minusAnimationButton;
 
     @FXML
-    private Button settingsAnimationButton;
+    private Button optionsAnimationButton;
 
     @FXML
     private GridPane shapeGrid;
@@ -83,10 +82,7 @@ public class SceneController {
     private Button plusShapeButton;
 
     @FXML
-    private Button cancelShapeButton;
-
-    @FXML
-    private Button settingsShapeButton;
+    private Button minusShapeButton;
 
     @FXML
     private Button playButton;
@@ -105,10 +101,9 @@ public class SceneController {
     @FXML
     public void initialize(){
         instance = this;
-        cancelAnimationButton.setDisable(true);
-        settingsAnimationButton.setDisable(true);
-        cancelShapeButton.setDisable(true);
-        settingsShapeButton.setDisable(true);
+        minusAnimationButton.setDisable(true);
+        optionsAnimationButton.setDisable(true);
+        minusShapeButton.setDisable(true);
         zoomPlusButton.setDisable(true);
         zoomMinusButton.setDisable(true);
         playButton.setDisable(false);
@@ -197,6 +192,9 @@ public class SceneController {
 
     public void addAnimationBox(AnimationBox box){
         animationList.getItems().add(box);
+        minusAnimationButton.setDisable(false);
+        optionsAnimationButton.setDisable(false);
+        playButton.setDisable(false);
     }
 
     public void onPlusAnimationButtonClick(){
@@ -209,11 +207,52 @@ public class SceneController {
             stage.setScene(scene);
             stage.setOnCloseRequest(e->{
                 if(SceneManager.getInstance().getAnimationsNumber() > 0){
-                    cancelAnimationButton.setDisable(false);
-                    settingsAnimationButton.setDisable(false);
+                    playButton.setDisable(false);
+                    minusAnimationButton.setDisable(false);
+                    optionsAnimationButton.setDisable(false);
                 }
             });
             NewAnimationController.getInstance().setStage(stage);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onMinusAnimationButtonClick(){
+        AnimationBox box = animationList.getSelectionModel().getSelectedItem();
+        if(box != null){
+            Action action = box.getAction();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete animation");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete the animation " + box.getName() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                animationList.getItems().remove(box);
+                SceneManager.getInstance().getScenario().deleteAction(action);
+            }
+
+            if(animationList.getItems().size() == 0){
+                playButton.setDisable(true);
+                stopButton.setDisable(true);
+                minusAnimationButton.setDisable(true);
+                optionsAnimationButton.setDisable(true);
+            }
+        }
+    }
+
+    public void onOptionsAnimationButtonClick(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/animationinfo.fxml"));
+            AnimationInfoController.getInstance().buildScene(animationList.getSelectionModel().getSelectedItem());
+            Scene scene = new Scene(root, 320, 240);
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("Animation options");
+            stage.setScene(scene);
+            AnimationInfoController.getInstance().setStage(stage);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -270,8 +309,7 @@ public class SceneController {
                         SceneManager.getInstance().addShape(shape);
                         shapeList.getItems().add(new ShapeBox(shape));
                         stage.close();
-                        cancelShapeButton.setDisable(false);
-                        settingsShapeButton.setDisable(false);
+                        minusShapeButton.setDisable(false);
                         if (SceneManager.getInstance().getShapeNumber() > 0) {
                             zoomPlusButton.setDisable(false);
                             zoomMinusButton.setDisable(false);

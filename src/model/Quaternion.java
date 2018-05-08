@@ -6,15 +6,25 @@ public class Quaternion {
     private double x;
     private double y;
     private double z;
+    private Point vector;
+    private double angle;
 
     public Quaternion(double s, double x, double y, double z){
         this.s = s;
         this.x = x;
         this.y = y;
         this.z = z;
+
+        angle = 2 * Math.acos(s);
+        double vX = x / Math.sqrt(1 - s*s);
+        double vY = y / Math.sqrt(1 - s*s);
+        double vZ = z / Math.sqrt(1 - s*s);
+        vector = new Point(vX, vY, vZ);
     }
 
     public Quaternion(Point vector, double angle){
+        this.angle = angle;
+        this.vector = vector;
         angle = Math.PI / 180 * angle;
         s = Math.cos(angle / 2);
         x = Math.sin(angle / 2) * vector.X();
@@ -36,6 +46,14 @@ public class Quaternion {
 
     public double Z(){
         return z;
+    }
+
+    public Point getVector(){
+        return vector;
+    }
+
+    public double getAngle(){
+        return angle;
     }
 
     public Quaternion sum(Quaternion other){

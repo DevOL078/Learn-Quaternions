@@ -59,6 +59,10 @@ public class QRotate implements Action {
 
     public boolean getFullRotation() {return fullRotation;}
 
+    public Quaternion getQuaternion(){
+        return q;
+    }
+
     @Override
     public void playTick(double tick){
         Quaternion startQ = new Quaternion(1, 0, 0, 0);

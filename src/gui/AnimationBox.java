@@ -13,18 +13,18 @@ import java.net.URL;
 
 public class AnimationBox extends HBox {
 
-    private Action animation;
+    private Action action;
     private String type;
     private String name;
 
     public AnimationBox(Action action, String name){
         this.name = name;
-        this.animation = action;
+        this.action = action;
         if(action instanceof QTranslate){
             type = "Transition";
         }
         else if(action instanceof QRotate){
-            QRotate rot = (QRotate)animation;
+            QRotate rot = (QRotate) this.action;
             if(rot.getFullRotation()){
                 type = "FullRotation";
             }
@@ -33,6 +33,10 @@ public class AnimationBox extends HBox {
             }
         }
         buildBox();
+    }
+
+    public String getName(){
+        return  name;
     }
 
     private void buildBox(){
@@ -49,11 +53,15 @@ public class AnimationBox extends HBox {
         image.getStylesheets().add(css);
         Label label = new Label(name);
         HBox.setMargin(label, new Insets(0, 10, 0, 0));
-        Label shapeName = new Label(animation.getName());
+        Label shapeName = new Label(action.getName());
         HBox.setMargin(shapeName, new Insets(0, 0, 0, 10));
         Pane pane = new Pane();
         HBox.setHgrow(pane, Priority.ALWAYS);
-        Label priority = new Label(String.valueOf(animation.getPriority()));
+        Label priority = new Label(String.valueOf(action.getPriority()));
         super.getChildren().addAll(image, label, shapeName, pane, priority);
+    }
+
+    public Action getAction(){
+        return action;
     }
 }
