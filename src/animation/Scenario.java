@@ -172,4 +172,8 @@ public class Scenario {
         toDelete.clear();
     }
 
+    public PriorityQueue<Action> getActions(){
+        return copyActions;
+    }
+
 }

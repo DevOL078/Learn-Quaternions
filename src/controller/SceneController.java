@@ -22,6 +22,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Sphere;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,8 +30,9 @@ import main.Test;
 import model.Point;
 import model.Quaternion;
 import model.Shape;
-import sun.security.provider.SHA;
+import util.LoadController;
 import util.Parser;
+import util.SaveController;
 import util.SceneManager;
 
 import java.io.File;
@@ -133,6 +135,15 @@ public class SceneController {
         subScene.setFill(Paint.valueOf("White"));
         mainScenePain.getChildren().add(subScene);
         subScene.setCamera(SceneManager.getInstance().getCamera());
+
+        subScene.setOnScroll(e->{
+            if(e.getDeltaY() > 0){
+                onZoomPlusButtonClick();
+            }
+            else{
+                onZoomMinusButtonClick();
+            }
+        });
 
         subScene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -313,7 +324,7 @@ public class SceneController {
             okButton.setOnMouseClicked(e -> {
                 if (!textField.getText().equals("")) {
                     try {
-                        Shape shape = new Shape(textField.getText(), parser.parseTriangleMesh());
+                        Shape shape = new Shape(textField.getText(), parser.parseTriangleMesh(), parser.getFile());
                         SceneManager.getInstance().addShape(shape);
                         shapeList.getItems().add(new ShapeBox(shape));
                         stage.close();
@@ -444,4 +455,59 @@ public class SceneController {
             }
         });
     }
+
+    public void onSaveButtonClick(){
+        DirectoryChooser chooser = new DirectoryChooser();
+        File file = chooser.showDialog(Test.getStage());
+        if(file != null && file.isDirectory()){
+            new SaveController(file.getAbsolutePath()).save();
+        }
+    }
+
+    public void onLoadButtonClick(){
+        FileChooser chooser = new FileChooser();
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Saved file (*.quat)", "*.quat");
+        chooser.getExtensionFilters().add(filter);
+        File file = chooser.showOpenDialog(Test.getStage());
+        if(file != null && !file.isDirectory()){
+            new LoadController(file.getAbsolutePath()).load();
+        }
+
+    }
+
+    public void addShape(Shape shape){
+        SceneManager.getInstance().addShape(shape);
+        shapeList.getItems().add(new ShapeBox(shape));
+        minusShapeButton.setDisable(false);
+        switchAxesButton.setDisable(false);
+        zoomPlusButton.setDisable(false);
+        zoomMinusButton.setDisable(false);
+        plusAnimationButton.setDisable(false);
+    }
+
+    public void addAction(Action action){
+        if(action instanceof QTranslate) {
+            QTranslate translate = (QTranslate)action;
+            SceneManager.getInstance().getScenario().addAction(translate);
+            SceneManager.getInstance().addTransition();
+
+            AnimationBox animationBox = new AnimationBox(translate, "Transition" + SceneManager.getInstance().getTransitionNumber());
+            addAnimationBox(animationBox);
+        }
+        else if(action instanceof QRotate){
+            QRotate rotation = (QRotate)action;
+            AnimationBox animationBox;
+            if(rotation.getFullRotation()) {
+                SceneManager.getInstance().addFullRotation();
+                animationBox = new AnimationBox(rotation, "FullRotation" + SceneManager.getInstance().getFullRotationNumber());
+            }
+            else{
+                SceneManager.getInstance().addRotation();
+                animationBox = new AnimationBox(rotation, "Rotation" + SceneManager.getInstance().getRotationNumber());
+            }
+            SceneManager.getInstance().getScenario().addAction(rotation);
+            addAnimationBox(animationBox);
+        }
+    }
+
 }

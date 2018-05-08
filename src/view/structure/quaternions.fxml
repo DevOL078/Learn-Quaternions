@@ -29,8 +29,8 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnSpan="3">
                <children>
-                  <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
-                  <Button fx:id="loadButton" mnemonicParsing="false" text="Load" />
+                  <Button fx:id="saveButton" mnemonicParsing="false" text="Save" onMouseClicked="#onSaveButtonClick"/>
+                  <Button fx:id="loadButton" mnemonicParsing="false" text="Load" onMouseClicked="#onLoadButtonClick"/>
                </children>
             </HBox>
             <GridPane fx:id="animationGrid" style="-fx-border-color: black;" GridPane.rowIndex="1">

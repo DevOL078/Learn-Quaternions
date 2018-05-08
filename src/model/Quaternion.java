@@ -15,7 +15,7 @@ public class Quaternion {
         this.y = y;
         this.z = z;
 
-        angle = 2 * Math.acos(s);
+        angle = 2 * Math.acos(s) / Math.PI * 180;
         double vX = x / Math.sqrt(1 - s*s);
         double vY = y / Math.sqrt(1 - s*s);
         double vZ = z / Math.sqrt(1 - s*s);

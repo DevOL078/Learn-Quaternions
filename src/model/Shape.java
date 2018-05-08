@@ -15,6 +15,7 @@ public class Shape {
     private TriangleMesh mesh;
     private Group group;
     private MeshView view;
+    private String file;
 
     private Group rotationGroup;
     private Group translationGroup;
@@ -23,9 +24,10 @@ public class Shape {
     private Box oy;
     private Box oz;
 
-    public Shape(String name, TriangleMesh mesh){
+    public Shape(String name, TriangleMesh mesh, String file){
         this.name = name;
         this.mesh = mesh;
+        this.file = file;
 
         view = new MeshView(mesh);
 
@@ -40,6 +42,10 @@ public class Shape {
         this.group = group;
         this.rotationGroup = new Group(group);
         this.translationGroup = new Group(rotationGroup);
+    }
+
+    public String getFile(){
+        return file;
     }
 
     public String getName(){

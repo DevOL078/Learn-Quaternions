@@ -24,6 +24,10 @@ public class Parser {
         return mesh;
     }
 
+    public String getFile(){
+        return file;
+    }
+
     private void addPoints(TriangleMesh mesh) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String str = "";

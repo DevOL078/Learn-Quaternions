@@ -3,21 +3,18 @@ package util;
 import animation.Scenario;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import model.Shape;
 
 import java.util.HashMap;
-import java.util.Vector;
 
-public class SceneManager {
+public class SceneManager{
 
     private static SceneManager instance = new SceneManager();
 
-    private int transitionNumber = 0;
-    private int rotationNumber = 0;
-    private int fullRotationNumber = 0;
-    private int shapeNumber = 0;
+    private int transitionNumber;
+    private int rotationNumber;
+    private int fullRotationNumber;
+    private int shapeNumber;
     private Scenario scenario;
     private HashMap<String, Shape> shapes;
     private Group mainScene;
@@ -30,11 +27,16 @@ public class SceneManager {
         shapes = new HashMap<>();
         mainScene = new Group();
 
+        this.transitionNumber = 0;
+        this.rotationNumber = 0;
+        this.fullRotationNumber = 0;
+        this.shapeNumber = 0;
+
         camera = new PerspectiveCamera(true);
         camera.setTranslateX(0);
         camera.setTranslateY(0);
         camera.setTranslateZ(-200);
-        camera.setFarClip(600);
+        camera.setFarClip(1000);
 
         cameraGroup1 = new Group();
         cameraGroup1.getChildren().add(camera);
@@ -89,6 +91,10 @@ public class SceneManager {
         return shapes.get(shapeName);
     }
 
+    public HashMap<String, Shape> getShapes(){
+        return shapes;
+    }
+
     public void addTransition(){
         transitionNumber++;
     }
@@ -117,6 +123,31 @@ public class SceneManager {
 
     public int getAnimationsNumber(){
         return transitionNumber + rotationNumber + fullRotationNumber;
+    }
+
+    public void resetManager(){
+        scenario = new Scenario();
+        shapes = new HashMap<>();
+        mainScene = new Group();
+
+        this.transitionNumber = 0;
+        this.rotationNumber = 0;
+        this.fullRotationNumber = 0;
+        this.shapeNumber = 0;
+
+        camera = new PerspectiveCamera(true);
+        camera.setTranslateX(0);
+        camera.setTranslateY(0);
+        camera.setTranslateZ(-200);
+        camera.setFarClip(1000);
+
+        cameraGroup1 = new Group();
+        cameraGroup1.getChildren().add(camera);
+
+        cameraGroup2 = new Group();
+        cameraGroup2.getChildren().add(cameraGroup1);
+
+        mainScene.getChildren().add(cameraGroup2);
     }
 
 }
