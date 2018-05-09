@@ -1,8 +1,12 @@
 package util;
 
+import animation.Action;
+import animation.QRotate;
+import animation.QTranslate;
 import animation.Scenario;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
+import javafx.scene.transform.Rotate;
 import model.Shape;
 
 import java.util.HashMap;
@@ -15,6 +19,9 @@ public class SceneManager{
     private int rotationNumber;
     private int fullRotationNumber;
     private int shapeNumber;
+    private int transitionActualNumber;
+    private int rotationActualNumber;
+    private int fullRotationActualNumber;
     private Scenario scenario;
     private HashMap<String, Shape> shapes;
     private Group mainScene;
@@ -30,6 +37,9 @@ public class SceneManager{
         this.transitionNumber = 0;
         this.rotationNumber = 0;
         this.fullRotationNumber = 0;
+        this.transitionActualNumber = 0;
+        this.rotationActualNumber = 0;
+        this.fullRotationActualNumber = 0;
         this.shapeNumber = 0;
 
         camera = new PerspectiveCamera(true);
@@ -97,14 +107,31 @@ public class SceneManager{
 
     public void addTransition(){
         transitionNumber++;
+        transitionActualNumber++;
     }
 
     public void addRotation(){
         rotationNumber++;
+        rotationActualNumber++;
     }
 
     public void addFullRotation(){
         fullRotationNumber++;
+        fullRotationActualNumber++;
+    }
+
+    public void deleteAction(Action action){
+        if(action instanceof QTranslate){
+            transitionActualNumber--;
+        }
+        else if(action instanceof QRotate){
+            if(((QRotate) action).getFullRotation()){
+                fullRotationActualNumber--;
+            }
+            else{
+                rotationActualNumber--;
+            }
+        }
     }
 
     public void addShape(Shape shape){
@@ -122,7 +149,7 @@ public class SceneManager{
     }
 
     public int getAnimationsNumber(){
-        return transitionNumber + rotationNumber + fullRotationNumber;
+        return transitionActualNumber + rotationActualNumber + fullRotationActualNumber;
     }
 
     public void resetManager(){

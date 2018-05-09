@@ -138,10 +138,10 @@ public class SceneController {
 
         subScene.setOnScroll(e->{
             if(e.getDeltaY() > 0){
-                onZoomPlusButtonClick();
+                onZoomMinusButtonClick();
             }
             else{
-                onZoomMinusButtonClick();
+                onZoomPlusButtonClick();
             }
         });
 
@@ -251,6 +251,7 @@ public class SceneController {
             if(result.get() == ButtonType.OK){
                 animationList.getItems().remove(box);
                 SceneManager.getInstance().getScenario().deleteAction(action);
+                SceneManager.getInstance().deleteAction(action);
             }
 
             if(animationList.getItems().size() == 0){
@@ -507,6 +508,20 @@ public class SceneController {
             }
             SceneManager.getInstance().getScenario().addAction(rotation);
             addAnimationBox(animationBox);
+        }
+    }
+
+    public void onCalculatorButtonClick(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/calculator.fxml"));
+            Scene scene = new Scene(root, 600, 335);
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("Calculator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
