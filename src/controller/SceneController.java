@@ -26,7 +26,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.Test;
+import main.Main;
 import model.Point;
 import model.Quaternion;
 import model.Shape;
@@ -312,7 +312,7 @@ public class SceneController {
         FileChooser chooser = new FileChooser();
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Meshmixer artifact (*.smesh)", "*.smesh");
         chooser.getExtensionFilters().add(filter);
-        File file = chooser.showOpenDialog(Test.getStage());
+        File file = chooser.showOpenDialog(Main.getStage());
         if (file != null) {
             Parser parser = new Parser(file.getAbsolutePath());
             Stage stage = new Stage();
@@ -398,7 +398,7 @@ public class SceneController {
     }
 
     private void buildShapeController() {
-        Test.getStage().getScene().setOnKeyPressed(e -> {
+        Main.getStage().getScene().setOnKeyPressed(e -> {
             ShapeBox box = shapeList.getSelectionModel().getSelectedItem();
             if(box != null) {
                 Shape shape = box.shape();
@@ -459,7 +459,7 @@ public class SceneController {
 
     public void onSaveButtonClick(){
         DirectoryChooser chooser = new DirectoryChooser();
-        File file = chooser.showDialog(Test.getStage());
+        File file = chooser.showDialog(Main.getStage());
         if(file != null && file.isDirectory()){
             new SaveController(file.getAbsolutePath()).save();
         }
@@ -469,7 +469,7 @@ public class SceneController {
         FileChooser chooser = new FileChooser();
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Saved file (*.quat)", "*.quat");
         chooser.getExtensionFilters().add(filter);
-        File file = chooser.showOpenDialog(Test.getStage());
+        File file = chooser.showOpenDialog(Main.getStage());
         if(file != null && !file.isDirectory()){
             new LoadController(file.getAbsolutePath()).load();
         }
@@ -518,6 +518,20 @@ public class SceneController {
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.setTitle("Calculator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onConverterButtonClick(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/converter.fxml"));
+            Scene scene = new Scene(root, 600, 250);
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("Converter");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

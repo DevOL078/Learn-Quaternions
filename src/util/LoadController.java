@@ -9,7 +9,7 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
-import main.Test;
+import main.Main;
 import model.Point;
 import model.Quaternion;
 import model.Shape;
@@ -145,8 +145,8 @@ public class LoadController {
     private void loadNewScene(){
 
         try {
-            Test.getStage().close();
-            new Test().start(new Stage());
+            Main.getStage().close();
+            new Main().start(new Stage());
         } catch (Exception e) {
             e.printStackTrace();
         }

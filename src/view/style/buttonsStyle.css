@@ -61,3 +61,19 @@
     -fx-background-insets: 0, 1;
     -fx-background-repeat: no-repeat;
 }
+
+.VAtoQ{
+    -fx-background-image: url("../../img/vecToQuat.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.QtoVA{
+    -fx-background-image: url("../../img/quatToVec.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}

@@ -31,7 +31,8 @@
                <children>
                   <Button fx:id="saveButton" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#onSaveButtonClick" prefWidth="50.0" text="Save" />
                   <Button fx:id="loadButton" minWidth="50.0" mnemonicParsing="false" onMouseClicked="#onLoadButtonClick" prefWidth="50.0" text="Load" />
-                  <Button fx:id="calculatorButton" minWidth="70.0" mnemonicParsing="false" prefWidth="70.0" text="Calculator" onMouseClicked="#onCalculatorButtonClick"/>
+                  <Button fx:id="calculatorButton" minWidth="70.0" mnemonicParsing="false" onMouseClicked="#onCalculatorButtonClick" prefWidth="70.0" text="Calculator" />
+                  <Button fx:id="converterButton" mnemonicParsing="false" text="Converter" onMouseClicked="#onConverterButtonClick"/>
                </children>
             </HBox>
             <GridPane fx:id="animationGrid" style="-fx-border-color: black;" GridPane.rowIndex="1">

@@ -153,7 +153,7 @@ public class CalculatorController {
             }
         }catch (NumberFormatException e){
             messageLab.setVisible(true);
-            messageLab.setText("Illegal format of parameters");
+            messageLab.setText("Illegal format of the parameters");
         }
         return null;
     }
@@ -176,7 +176,7 @@ public class CalculatorController {
             }
         }catch (NumberFormatException e){
             messageLab.setVisible(true);
-            messageLab.setText("Illegal format of parameters");
+            messageLab.setText("Illegal format of the parameters");
         }
         return null;
     }
