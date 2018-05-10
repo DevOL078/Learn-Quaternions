@@ -13,7 +13,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("../view/structure/quaternions.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/structure/quaternions.fxml"));
         Scene scene = new Scene(root, 900, 600);
         primaryStage.setTitle("Learn Quaternions");
         primaryStage.setScene(scene);

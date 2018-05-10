@@ -1,6 +1,5 @@
 package animation;
 
-import javafx.scene.Group;
 import javafx.scene.transform.Translate;
 import model.Point;
 import model.Shape;
@@ -12,7 +11,6 @@ public class QTranslate implements Action {
     private Point vector;
     private int ticks;
     private int priority;
-    private Translate translate;
 
     public QTranslate(int priority, Shape shape, Point vector) {
         this.priority = priority;
@@ -57,7 +55,7 @@ public class QTranslate implements Action {
     }
 
     private void translate(Point vector){
-        translate = new Translate(vector.X(), vector.Y(), vector.Z());
+        Translate translate = new Translate(vector.X(), vector.Y(), vector.Z());
         shape.getTranslationGroup().getTransforms().add(translate);
     }
 
@@ -65,10 +63,6 @@ public class QTranslate implements Action {
         Translate translate = new Translate(vector.X(), vector.Y(), vector.Z());
         shape.getTranslationGroup().getTransforms().add(translate);
         SceneManager.getInstance().getScenario().addMemberTransform(shape, translate);
-    }
-
-    public static void translateGroup(Group group, Point vector){
-
     }
 
 }

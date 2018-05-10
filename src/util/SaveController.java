@@ -16,8 +16,8 @@ import java.util.Date;
 
 public class SaveController {
 
-    String dirPath;
-    String fileName;
+    private String dirPath;
+    private String fileName;
 
     public SaveController(String dirPath){
         this.dirPath = dirPath;

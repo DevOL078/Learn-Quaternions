@@ -1,7 +1,6 @@
 package animation;
 
 import controller.SceneController;
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +9,6 @@ import javafx.scene.transform.Transform;
 import javafx.scene.transform.Translate;
 import model.Shape;
 
-import java.io.PrintStream;
 import java.util.*;
 
 public class Scenario {

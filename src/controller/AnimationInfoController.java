@@ -5,9 +5,7 @@ import animation.QRotate;
 import animation.QTranslate;
 import gui.AnimationBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -66,9 +64,6 @@ public class AnimationInfoController {
 
     @FXML
     private Label fullRotationLab;
-
-    @FXML
-    private Button okButton;
 
     private static AnimationInfoController instance;
     private Stage stage;

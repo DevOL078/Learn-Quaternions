@@ -6,7 +6,6 @@ import animation.QTranslate;
 import animation.Scenario;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
-import javafx.scene.transform.Rotate;
 import model.Shape;
 
 import java.util.HashMap;

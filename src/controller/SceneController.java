@@ -15,7 +15,6 @@ import javafx.scene.SubScene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -44,16 +43,7 @@ import java.util.Vector;
 public class SceneController {
 
     @FXML
-    private GridPane gridPane;
-
-    @FXML
-    private GridPane animationGrid;
-
-    @FXML
     private ListView<AnimationBox> animationList;
-
-    @FXML
-    private GridPane animationPanel;
 
     @FXML
     private Button plusAnimationButton;
@@ -65,13 +55,7 @@ public class SceneController {
     private Button optionsAnimationButton;
 
     @FXML
-    private GridPane shapeGrid;
-
-    @FXML
     private ListView<ShapeBox> shapeList;
-
-    @FXML
-    private GridPane scenarioPanel;
 
     @FXML
     private Pane mainScenePain;
@@ -81,9 +65,6 @@ public class SceneController {
 
     @FXML
     private Button zoomMinusButton;
-
-    @FXML
-    private Button plusShapeButton;
 
     @FXML
     private Button minusShapeButton;
@@ -218,7 +199,7 @@ public class SceneController {
 
     public void onPlusAnimationButtonClick(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/newanimation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/structure/newanimation.fxml"));
             Scene scene = new Scene(root, 320, 240);
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
@@ -265,7 +246,7 @@ public class SceneController {
 
     public void onOptionsAnimationButtonClick(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/animationinfo.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/structure/animationinfo.fxml"));
             AnimationInfoController.getInstance().buildScene(animationList.getSelectionModel().getSelectedItem());
             Scene scene = new Scene(root, 320, 240);
             Stage stage = new Stage();
@@ -322,6 +303,7 @@ public class SceneController {
             Label label = new Label("New shape's name");
             TextField textField = new TextField();
             Button okButton = new Button("OK");
+            okButton.setMaxWidth(70);
             okButton.setOnMouseClicked(e -> {
                 if (!textField.getText().equals("")) {
                     try {
@@ -362,7 +344,7 @@ public class SceneController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete shape");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to delete the shape " + box.shape().getName());
+            alert.setContentText("Are you sure you want to delete the shape " + box.shape().getName() + " ?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK) {
@@ -513,7 +495,7 @@ public class SceneController {
 
     public void onCalculatorButtonClick(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/calculator.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/structure/calculator.fxml"));
             Scene scene = new Scene(root, 600, 335);
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
@@ -527,7 +509,7 @@ public class SceneController {
 
     public void onConverterButtonClick(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/structure/converter.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/structure/converter.fxml"));
             Scene scene = new Scene(root, 600, 250);
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);

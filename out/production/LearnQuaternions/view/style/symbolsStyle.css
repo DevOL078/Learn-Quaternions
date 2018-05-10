@@ -1,0 +1,23 @@
+.transition{
+    -fx-background-image: url("../../img/transitionSymbol.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.fullRotation{
+    -fx-background-image: url("../../img/fullRotationSymbol.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.rotation{
+    -fx-background-image: url("../../img/rotationSymbol.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}

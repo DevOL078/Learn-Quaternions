@@ -48,7 +48,7 @@ public class AnimationBox extends HBox {
             case "Rotation" : image.getStyleClass().add("rotation"); break;
             case "FullRotation" : image.getStyleClass().add("fullRotation"); break;
         }
-        URL url = this.getClass().getResource("../view/style/symbolsStyle.css");
+        URL url = this.getClass().getResource("/view/style/symbolsStyle.css");
         String css = url.toExternalForm();
         image.getStylesheets().add(css);
         Label label = new Label(name);

@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Quaternion;
-import util.SceneManager;
 
 public class CalculatorController {
 
@@ -58,22 +57,7 @@ public class CalculatorController {
     private Label resultVAZText;
 
     @FXML
-    private Button inverseButton;
-
-    @FXML
-    private Button normalizeButton;
-
-    @FXML
-    private Button multiplyByScalarButton;
-
-    @FXML
     private TextField scalarText;
-
-    @FXML
-    private Button sumButton;
-
-    @FXML
-    private Button multiplyButton;
 
     @FXML
     private Label messageLab;
@@ -114,7 +98,7 @@ public class CalculatorController {
                     writeResult(q.multiplyScalar(scalar));
                 }
             }catch(NumberFormatException e){
-                messageLab.setText("Illegal format of parameters");
+                messageLab.setText("Illegal format of the parameters");
             }
         }
     }

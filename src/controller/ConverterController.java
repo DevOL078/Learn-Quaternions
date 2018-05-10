@@ -34,12 +34,6 @@ public class ConverterController {
     private TextField zVec;
 
     @FXML
-    private Button toQuatButton;
-
-    @FXML
-    private Button toVecButton;
-
-    @FXML
     public void initialize(){
 
     }

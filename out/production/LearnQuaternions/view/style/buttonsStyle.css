@@ -1,0 +1,79 @@
+.plusButton{
+    -fx-background-image: url("../../img/plus.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.cancelButton{
+    -fx-background-image: url("../../img/minus.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.settingsButton{
+    -fx-background-image: url("../../img/settings.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.stopButton{
+    -fx-background-image: url("../../img/stop.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.playButton{
+    -fx-background-image: url("../../img/play.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.zoomPlus{
+    -fx-background-image: url("../../img/zoomPlus.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.zoomMinus{
+    -fx-background-image: url("../../img/zoomMinus.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.switchAxesButton{
+    -fx-background-image: url("../../img/axes.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.VAtoQ{
+    -fx-background-image: url("../../img/vecToQuat.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
+
+.QtoVA{
+    -fx-background-image: url("../../img/quatToVec.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-insets: 0, 1;
+    -fx-background-repeat: no-repeat;
+}
